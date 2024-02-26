@@ -1,0 +1,73 @@
+﻿@page
+@model Postbank.Pages.Account.IndexModel
+
+@{
+    ViewData["Title"] = "Mijn rekening";
+}
+
+<h1>Mijn rekening</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BankAccount.BankUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BankAccount.BankUser.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BankAccount.Balance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BankAccount.Balance)
+        </dd>
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Van
+            </th>
+            <th>
+                Naar
+            </th>
+            <th>
+                Bedrag
+            </th>
+            <th>
+                Omschrijving
+            </th>
+            <th>
+                Datum
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BankTransactions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.From)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.To)
+                </td>
+                <td style="@(Model.BankUser.Name == item.From ? "Background-color:red" : "Background-color:green")">
+                    @(Model.BankUser.Name == item.From ? "-" : "+")@Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-page="./Transfer">Geld overmaken</a>
+</div>

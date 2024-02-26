@@ -1,0 +1,63 @@
+﻿@page
+@model Postbank.Pages.Transactions.IndexModel
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{
+    ViewData["Title"] = "Transacties";
+}
+
+<h1>Transacties</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransaction[0].From)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransaction[0].To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransaction[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransaction[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransaction[0].DateCreated)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BankTransaction) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.From)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.To)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@section Scripts {
+    @{
+        <script>
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 2000);
+        </script>
+    }
+}

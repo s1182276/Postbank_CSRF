@@ -1,0 +1,46 @@
+﻿@page
+@model TransferModel
+
+@{
+    ViewData["Title"] = "Overmaken";
+}
+
+<h1>Overmaken</h1>
+@if (ViewData["Message"] != null)
+{
+    <b style="color:red;">@ViewData["Message"]</b>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BankTransferDto.To" class="control-label"></label>
+                <input asp-for="BankTransferDto.To" class="form-control" />
+                <span asp-validation-for="BankTransferDto.To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankTransferDto.Amount" class="control-label"></label>
+                <input asp-for="BankTransferDto.Amount" class="form-control" />
+                <span asp-validation-for="BankTransferDto.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankTransferDto.Description" class="control-label"></label>
+                <input asp-for="BankTransferDto.Description" class="form-control" />
+                <span asp-validation-for="BankTransferDto.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Overmaken" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Mijn rekening</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
